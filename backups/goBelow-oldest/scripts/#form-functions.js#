@@ -1,0 +1,103 @@
+
+var clean_text_fields = function(){
+	$('.visible').slideUp([1000]).removeClass('visible');
+	$(".date-input").removeAttr("placeholder");
+	$('#depart-from').removeAttr("placeholder");
+	$('#arrive-at').removeAttr("placeholder");
+	$(".mini-calendar").hide();
+};
+
+var monitor_radio = function(){
+	$("input[type='radio']").change(function(){
+		clean_text_fields();
+		var phone_field = $('#phone-field');
+		if ($(this).val() == "text-me"){
+			 phone_field.slideDown([1000]);
+		} else {
+			 phone_field.slideUp([1000]);
+		}
+	});
+};
+
+var set_datepickers = function(){
+	$('.mini-calendar').on('click', function(e){
+		$.datepicker.setDefaults($.extend($.datepicker.regional[""]));
+		if ($(this).hasClass('mini-calendar-from')){
+			 a$('#start-date').datepicker();
+			 $('#end-date').datepicker();
+			 $('#start-date').focus();		
+		}
+		else{
+			$('#start-date').datepicker();
+			$('#end-date').datepicker();
+			$('#end-date').focus();
+		}			
+	}); 
+};
+
+var toggle_descriptions = function(){	
+	$("#email").on('focus', function(e) {
+		clean_text_fields();
+	});
+
+	$(".airports").on('focus', function(e) {
+		var airports_text = $('#airports-text')
+		if (airports_text.hasClass('visible')) return;
+		clean_text_fields();
+		airports_text.addClass('visible');
+		airports_text.slideDown([1000]);
+		$('#depart-from').attr("placeholder", "JFK");
+		$('#arrive-at').attr("placeholder", "LAX");
+	});
+	
+	$(".date-input").on('focus', function(e) {
+		var date_text = $('#date-text');
+		if (date_text.hasClass('visible')) return;
+		clean_text_fields();
+		date_text.addClass('visible');
+		date_text.slideDown([1000]);
+		$(".date-input").attr("placeholder", "mm/dd/yyyy");
+		$(".mini-calendar").show('slide');
+	});
+
+	$("#threshold").on('focus', function(e) {
+		var thresh_text = $('#threshold-text');
+		if (thresh_text.hasClass('visible')) return;
+		clean_text_fields();
+		thresh_text.addClass('visible');
+		thresh_text.slideDown([1000]);
+	});
+};
+
+// used in ap_list
+var funnel_results = function(i_arr, arr, idx){
+   	var matches = $.map(arr, function(tag) {
+   		var v_arr = tag.label.toUpperCase().split(" ");
+   		for (var i = 0; i < v_arr.length; i++){		
+   			if (v_arr[i].indexOf(i_arr[idx]) === 0){
+   				return tag;
+   			}
+   		}				
+   	});
+   	if(i_arr.length - 1 === idx) return matches;
+   	return funnel_results(i_arr, matches, idx+1);			
+}
+
+var ap_list = function(){
+	$( "#depart-from" ).autocomplete({
+		source: function(request, response) {
+   		var input_arr = request.term.toUpperCase().split(" ");
+   		response(funnel_results(input_arr, airports_list, 0));
+  		}, 
+  		autoFocus: true,
+  		delay: 50
+	});
+	$( "#arrive-at" ).autocomplete({
+		source: function(request, response) {
+   		var input_arr = request.term.toUpperCase().split(" ");
+   		response(funnel_results(input_arr, airports_list, 0));
+  		}, 
+  		autoFocus: true,
+  		delay: 50
+	});
+}

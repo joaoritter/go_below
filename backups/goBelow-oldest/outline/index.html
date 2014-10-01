@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>EXEMPLAR</title>
+<style>
+
+</style>
+</head>
+<body>
+<h1>goBelow Outline</h1>
+<h2>RESTful Interfaces</h2>
+<table border="1">
+	<tr>
+		<th>HTTP Method</th>
+		<th>URL Form</th>
+		<th>Parameters</th>
+		<th>Result structure</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>GET</td>
+		<td>/airports.php/</td>
+		<td>A string from the input. The string must be matched against the airport code, city, country, and airport name.</td>
+		<td>Array of airport objects (see below)</td>
+		<td>As the user types in input for "Depart from" and "Arraive at", the algorithm will make suggestions. 404 Not Found returned if id specified is not legal.</td>
+	</tr>
+	<tr>
+		<td>GET</td>
+		<td>/searches.php/</td>
+		<td>none</td>
+		<td>Array of Integers</td>
+		<td>Numeric ID's of all searches. Pass this array into the algorithm that checks if a search has gone under threshold.</td>
+
+	</tr>
+	<tr>
+		<td>POST</td>
+		<td>/searches.php/</td>
+		<td>
+		<dl>
+			<dt>email</dt>
+			<dd>email of searcher</dd>
+			<dt>airport</dt>
+			<dd>integer id of "depart from" airport</dd>
+			<dt>airport</dt>
+			<dd>integer id of "arrive at" airport</dd>
+			<dt>date</dt>
+			<dd>"from" date object</dd>
+			<dt>date</dt>
+			<dd>"until" date object</dd>
+			<dt>threshold</dt>
+			<dd>price threshold of search</dd>
+			<dt>notify via</dt>
+			<dd>mail or phone</dd>
+			<dt>phone</dt>
+			<dd>Could be null if notify via = "email"</dd>
+		</dl>
+		</td>
+	
+	<td>Search object (see below)</td>
+	<td>This search object get put into a database so that the algorithm can check whether or not there is a flight available under the threshold</td>
+	</tr>
+	<tr>
+		<td>GET</td>
+		<td>/searches.php/+id</td>
+		<td>rm</td>
+		<td>True</td>
+		<td>Search object with corresponding +id is deleted. Value of the rm perameter not used, only notifies that we should delete. 404 Not Found generated if id is not recognized as legal. This means that first access will delete search and any subsequent access to same URL will result in 404.</td>
+	</tr>
+</table>
+<br>
+
+<h3>Airport</h3>
+<p>An airport is JSON encoded as follows:</p>
+<blockquote>
+	{id: Integer,
+	<br>
+	code: String,
+	<br>
+	name: String,
+	<br>
+	city: String,
+	<br>
+	country: String}
+</blockquote>
+
+<h3>Search</h3>
+<p>A search is JSON encoded as follows:</p>
+<blockquote>
+	{id: Integer,
+	<br>
+	email: String,
+	<br>
+	airport_start: airport object,
+	<br>
+	airport_end: airport object,
+	<br>
+	date_start: date object,
+	<br>
+	date_end: date object,
+	<br>
+	threshold: Integer,
+	<br>
+	notify_via: String, 
+	<br>
+	phone: Integer}
+</blockquote>
+
+
+//Not sure how I'll handle date objects as they are part of javascript and jquery. I may need to make another JSON date object.
+
+
+<h2>Database Schema is as follows:</h2>
+<h4>Airports</h4>
+<blockquote>
+id : INT, primary key
+<br>
+code: CHAR(3), airport code
+<br>
+name: CHAR(50), name of airport
+<br>
+city: INT, foreign key to Cities table
+<br>
+country: INT, foreign key of Countries table
+</blockquote>
+
+<h4>Cities</h4>
+<blockquote>
+	id: INT, primary key
+	<br>
+	name: CHAR(50), city's name
+	<br>
+	latitude: INT, latitude value
+	<br>
+	longitude: INT, longitude value
+</blockquote>
+
+<h4>Countries</h4>
+<blockquote>
+	id: INT, primary key
+	<br>
+	name: CHAR(50), country's name
+</blockquote>
+
+<h4>Searches</h4>
+<blockquote>
+id: INT, primary key
+<br>
+email: INT, foreign key to Email table
+<br>
+airport_start: INT, foreign key to Airports table
+<br>
+airport_end: INT, foreign key to Airports table
+<br>
+date-start: CHAR(15), starting date
+<br>
+date-end: CHAR(15), ending date
+<br>
+email_notification: BOOL, if false assume phone notif. 
+<br>
+phone_number: INT, foreign key to Phone table, possibly null
+</blockquote>
+
+<h4>Phone</h4>
+<blockquote>
+	id: INT, primary key
+	<br>
+	phone: INT, value of phone number
+</blockquote>
+
+<h4>Email</h4>
+<blockquote>
+	id: INT, primary key
+	<br>
+	email: CHAR(50), value of email
+</blockquote>
+
+</body>

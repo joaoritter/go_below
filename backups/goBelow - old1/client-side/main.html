@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Go Below</title>
+		<link href="styles.css" rel="stylesheet" type="text/css">
+		<link href="jquery-ui-1.10.3-2.custom/css/custom-theme/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="jquery-ui-1.10.3-2.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script type="text/javascript" src="scripts/airports.js"></script>
+		<script type="text/javascript" src="scripts/form_functions.js"></script>
+		<script type="text/javascript" src="scripts/ready.js"></script>
+
+	</head>
+	<body>
+		<div id="content">
+			<div id="logo"></div>
+			<form id="main_form">
+				<fieldset id="main_fieldset">
+					<label for="email">
+						<p>Email |</p>
+					</label>
+					<input id="email" type="email" name="email" placeholder="belo@example.com" maxlength="50">
+					<hr id="email_line">
+					<label for="depart_from">
+						<p>Depart from |</p>
+					</label>
+					<input id="depart_from" class="airports" type="text" name="depart_from" maxlength="75">
+					<label for="arrive_at">
+						<p>Arrive at |</p>
+					</label>
+					<input id="arrive_at" class="airports" type="text" name="arrive_at" maxlength="75">
+					<hr id="deparr_line">
+					<label for="from_date">
+						<p>Search from |</p>
+					</label>
+					<input id="from_date" class="date_input" type="text" name="from_date" maxlength="30">
+					<label for="until_date">
+						<p>Until |</p>
+					</label>
+					<input id="until_date" class="date_input" type="text" name="until_date" maxlength="30">
+					<hr id="date_line">
+					<label id="threshold_label" for="threshold">
+						<p>Threshold | <span style="color: #999;">$</span></p>
+					</label>
+					<input id="threshold" type="text" name="threshold" style="width:5em;" maxlength="5">
+					<hr id="thresh_line">
+					<div id="notif_text">
+						<h4>Notify via</h4>
+					</div>
+					<div id="radio_box">
+						<input id="email_me" type="radio" name="notify_phone" value="0" checked="checked">
+						<label id="email_me_label" class="radio" for="email_me">
+							<span>
+								<p>Email</p>
+							</span>
+						</label>
+						<input id="text_me" type="radio" name="notify_phone" value="1" maxlength="16">
+						<label id="text_me_label" class="radio" for="text_me">
+							<span>
+								<p>Text message</p>
+							</span>
+						</label>
+					</div>
+				</fieldset>
+				<fieldset id="submit_fieldset">
+					<button id="go" type="submit" title="Go"><!--cssimage--></button>
+				</fieldset>
+			</form>
+		</div>
+	</body>
+</html>

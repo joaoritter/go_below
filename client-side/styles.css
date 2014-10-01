@@ -1,0 +1,238 @@
+@charset "UTF-8";
+html {
+/*	background-image: url(images/background.jpg);*/
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-size: 15px;
+}
+#content {
+	float: left;
+	background-color: #FFF;
+	opacity: .9;
+	margin: 40px 0 80px 100px;
+	width: 351px; /*was 400, 351 due to result div*/
+	border: 1px solid black;
+	border-radius: 20px;
+	padding-bottom: 5px;
+	-webkit-box-shadow: -1px 1px 7px 0px;
+	box-shadow: -1px 1px 7px 0px;
+}
+#logo {
+	float: left;
+	margin: 20px 0 0 20px;
+	width: 296px;
+	height: 60px;
+	background-image: url(images/logo1.jpg);
+}
+#main_form {
+	float: left;
+	width: 100%;
+	margin-top: 10px;
+}
+hr {
+	clear: both;
+	color: #EEE;
+	margin: 0 0 6px 0;
+}
+label {
+	float:left;
+	display: inline-block;
+	margin: 0px 0 8px 0;
+}
+label:not(#threshold_label):not(#email_me_label):not(#text_me_label) {
+	margin-right: 5px;
+}
+input{
+	display: block;
+	border: none;
+	font-size: 14px;
+	color: #999;
+	margin: 0 0 8px 0;
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+#email{
+    width: 264px;
+}
+#depart_from{
+    width: 214px;
+}
+#arrive_at{
+    width: 241px;
+}
+#phone_number{
+    width: 258px;
+}
+input:focus {
+	outline: none;
+}
+fieldset {
+	border: none;
+}
+#main_fieldset{
+	padding-bottom: 0px;
+}
+button {
+	clear: both;
+}
+p {
+	margin: 0;
+	padding: 0;
+}
+h4 {
+	padding: 0;
+	font-size: 12px;
+	color: #AAA;
+	margin: 0px;
+	text-emphasis: none;
+	font-weight: normal;
+}
+.date_input {
+	width: 7em;
+}
+#airports_text, #date_text, #threshold_text, #phone_field{
+	margin-bottom: 6px;
+}
+#phone_field{
+	clear:both;	
+}
+#radio_box {
+	float: left;
+	margin: 5px 0 5px 0;
+}
+
+input[type="radio"] {
+    display:none;
+}
+input[type="radio"] + label {
+	width:130px;
+	clear:left;
+    background:url(images/radio_unchecked.png) no-repeat;
+    cursor:pointer;
+}
+input[type="radio"] + label p {
+	margin: -2px 0 0 20px;
+}
+input[type="radio"]:checked + label {
+    background:url(images/radio_checked.png) no-repeat;
+}
+button[type="submit"]{
+	background-color: #eeeeee;
+	border:thin solid #777777;
+	border-radius: 6px;
+	width: 56px;
+	height: 22px;
+	margin: 0 0 0 5px;
+}
+#go{
+	background: url(images/submit_button_text.png) no-repeat scroll 0 0 transparent;
+}
+#make_changes{
+	margin-top: 10px;
+	width: 96px;
+}
+button[type="submit"]:hover{
+	-webkit-box-shadow: -1px 1px 4px 0px #535151;
+	box-shadow: -1px 1px 4px 0px #535151;
+}
+#ui-datepicker-div { display: none; }
+.mini_calendar_from{
+	float:right;
+	margin: 2px 95px 0 0;
+	cursor: pointer;
+}
+.mini_calendar_until{
+	float:right;
+	margin: 2px 148px 0 0;
+	cursor: pointer;
+}
+.down{
+	max-height: 100px;
+	width: 107%;
+	max-width: 333px;
+	margin-left: -5px;
+	margin-bottom: 10px;
+	margin-top: 0px;
+	white-space: nowrap;
+	overflow: scroll;
+	background-color: white;
+	border: thin solid #777;
+}
+.result{
+	width: 107%;
+	max-width: 333px;
+	margin-left: -5px;
+	margin-bottom: -5px;
+	margin-top: 10px;
+	border: thin solid #777;
+	border-radius: 0 0 13px 13px;
+}
+.red{
+	background: rgba(255, 0, 0, 0.2);
+}
+.yellow{
+	background: rgba(255, 255, 0, 0.4);
+}
+.green{
+	background: rgba(196, 231, 157, 0.8);
+}
+.ap_option{
+	width: 98%;
+	font-size: 12px;
+	color: #888;
+	margin: 0;
+	padding: 3px 1px 3px 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+.ap_option:hover{
+	-webkit-box-shadow: -1px 1px 7px 0px;
+	box-shadow: -1px 1px 7px 0px;
+	background: rgba(255, 255, 0, 0.1);
+}
+.down_title{
+	width: 98%;
+	text-align: left;
+	margin:0;
+	font-size: 13px;
+	color: #444;
+	padding: 5px 1px 5px 5px;
+}
+.no_good{
+	box-shadow: 0px 0px 2px rgba(200, 0, 0, 0.85);
+}
+.result_subtext{
+	/*width: 98%;*/
+	text-align: left;
+	font-size: 12px;
+	color: #555;
+	margin-left: 5px;
+	padding: 1px 1px 9px 5px;
+}
+.result .down_title{
+	width: auto;
+	margin-left: 5px;
+}
+
+/*DELETE THE FOLLOWING AFTER THE PROJECT PRESENTATION
+*/
+
+#box{
+	float:right;
+	width:300px;
+	border: thin solid black;
+	margin: 100px 200px 0 0;
+}
+
+.pick_me{
+	background-color: #eee;
+	border:thin solid black;
+	margin: 2px 0 0 0;
+}
+
+.under{
+	background-color: #bbb;
+}
